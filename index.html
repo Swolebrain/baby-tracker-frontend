@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <title>Baby Tracker</title>
+    <link href='css/font.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <div id="wrap">
+      <div id="regbar">
+        <div id="navthing">
+          <h2><a href="#" id="loginform">Login</a> | <a href="#" id="registerform">Register</a></h2>
+        <div class="login">
+          <div class="arrow-up"></div>
+          <div class="formholder">
+            <div class="randompad">
+               <fieldset>
+                 <label name="email">Email</label>
+                 <input id="logemail" type="email"  />
+                 <label name="password">Password</label>
+                 <input id="logpassword" type="password" />
+                 <input method="login" type="submit" value="Login" />
+
+               </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="register">
+          <div class="arrow-up"></div>
+          <div class="formholder">
+            <div class="randompad">
+               <fieldset>
+                 <label name="email">Email</label>
+                 <input type="email"  id="regemail"/>
+                 <label name="password">Password</label>
+                 <input type="password" id="regpassword"/>
+                 <label name="password-confirm">Confirm Password</label>
+                 <input type="password" id="regpassword-confirm"/>
+                 <input method="register" type="submit" value="Register" />
+
+               </fieldset>
+            </div>
+          </div>
+        </div>  
+
+        </div>
+      </div>
+    </div>
+    <!-- here is the main app ui -->
+    <div id="main-ui">
+      <div id="begin-feed" class="hoverable">Begin New Feed</div>
+      <div id="view-reports" class="hoverable">View Reports</div>
+      <div id="events" class="row">
+        <div id="left-boob">
+          <br><i class="fa fa-dot-circle-o fa-4x hoverable"></i>
+          <h3>L <span class="hidden-xs">Breast</span></h3>
+        </div>
+        <div id="right-boob">
+          <br><i class="fa fa-dot-circle-o fa-4x hoverable"></i>
+          <h3>R <span class="hidden-xs">Breast</span></h3>
+        </div>
+        <div id="pee">
+          <br><i class="fa fa-hand-pointer-o fa-4x hoverable"></i>
+          <h3>Pee</h3>
+        </div>
+        <div id="poo">
+          <br><i class="fa fa-hand-peace-o fa-4x hoverable"></i>
+          <h3>Poo</h3>
+        </div>
+          
+      </div>
+      
+      <div id="spa-panel">
+        <div id="stopwatch" style="display:none;">
+          <span id="time-display">00:00:000</span> <br>
+          <i id="playbtn" class="fa fa-play-circle-o hoverable"></i>
+          <i id="pausebtn" class="fa fa-pause-circle-o hoverable"></i>
+          <i id="stopbtn" class="fa fa-stop-circle-o hoverable"></i>
+          <i id="resetbtn" class="fa fa-times hoverable"></i>
+          <i id="savebtn" class="fa fa-floppy-o hoverable"></i>
+          <div id="stopwatch-feedback">&nbsp;</div>
+        </div>
+        <div id="opts12" style="display:none;">
+          <div id="opts-feedback">&nbsp;</div>
+        </div>
+        <div id="reports" style="display:none;">
+          <h3>Last Breast Used: <span id="lastboob"></span></h3>
+          <h3>Stools today: <span id="poos-today"></span></h3>
+          <h3>Pees today: <span id="pees-today"></span></h3>
+          <br>
+          <h3>Latest Feedings</h3>
+          <table>
+            <thead>
+              <td>Start Time</td>
+              <td>Total Minutes</td>
+              <td>Breast started</td>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src='js/jquery.js'></script>
+    <script type="text/javascript" src="js/firebase.js"></script>
+    <script type="text/javascript">
+      var ref = new Firebase("https://baby-tracker-1.firebaseio.com");
+      var currentUser;
+      var authData = ref.getAuth();
+      if (authData) {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        currentUser = ref.child("users").child(authData.uid);
+        $("#wrap").hide();
+      } else {
+        console.log("User is not logged in");
+        $("#wrap").show(); 
+        $("#main-ui").fadeOut();
+      }
+      function fitToHeight(){
+        $("#events").find("div").each(function(i, e){
+          var w = $(e).width();
+          $(e).height(w);
+          $(e).css("font-size", (w/8)+"px");
+        });
+      }
+      $(window).on("load resize", fitToHeight);
+    </script>
+    <script src="js/fb.js"></script>
+    <script src="js/loginform.js"></script>
+    <script src="js/stopwatch.js"></script>
+    <script src="js/main-menu.js"></script>
+</body>
+
+</html>
