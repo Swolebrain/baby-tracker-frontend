@@ -9,7 +9,7 @@ $('input[type="submit"]').off("click").on("click", function(){
       "password": $("#logpassword").val()
     }, function(error, authData) {
       if (error) {
-        alert("Login Failed for "+emailadd, error);
+        alert("Login Failed for "+emailadd+"-"+ error);
       } else {
         self.val("Authenticated successfully!");
         //console.log(authData);
