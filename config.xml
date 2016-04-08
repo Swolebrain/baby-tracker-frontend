@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" 
-        id="com.swolebrain.lactationtracker" version="1.0.2">
+        id="com.swolebrain.lactationtracker" version="1.0.3">
   <name>Newborn Breastfeeding Tracker</name>
   <description>Application to keep track of your baby's breast feeding.</description>
   <author href="http://www.swolebrain.com" email="thecodingteacher@gmail.com">Swolebrain</author>
@@ -18,7 +18,7 @@
   <plugin name="cordova-plugin-file" source="npm"/>
   <plugin name="cordova-plugin-file-transfer" source="npm"/>
   <plugin name="cordova-plugin-geolocation" source="npm"/>
-  <plugin name="cordova-plugin-globalization" source="npm"/>
+  <plugin name="cordova-plugin-globalization" source="npm"/>-->
   <plugin name="cordova-plugin-inappbrowser" source="npm"/>
   <plugin name="cordova-plugin-media" source="npm"/>
   <plugin name="cordova-plugin-network-information" source="npm"/>
