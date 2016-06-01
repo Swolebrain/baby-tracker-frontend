@@ -1,6 +1,6 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com.swolebrain.lactationtracker" version="1.0.6">
+        id="com.swolebrain.lactationtracker" version="1.0.7">
   <name>Newborn Breastfeeding Tracker</name>
   <description>Application to keep track of your baby's breast feeding.</description>
   <author href="http://www.swolebrain.com" email="thecodingteacher@gmail.com">Swolebrain</author>
@@ -70,6 +70,7 @@
   <platform name="android">
     <allow-intent href="*.firebaseio.com" />
     <allow-intent href="auth.firebase.com" />
+    <allow-intent href="debug1.phonegap.com" />
     <allow-intent href="market:*"/>
   </platform>
 </widget>
