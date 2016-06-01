@@ -6,7 +6,7 @@ function onDeviceReady(){
 
     push.on('registration', function(data) {
         // data.registrationId
-        $("#test-output").html("registered: "+data.registrationId);
+        //$("#test-output").html("registered: "+data.registrationId);
     });
 
     push.on('notification', function(data) {

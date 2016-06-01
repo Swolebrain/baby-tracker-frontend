@@ -70,7 +70,7 @@
   <platform name="android">
     <allow-intent href="*.firebaseio.com" />
     <allow-intent href="auth.firebase.com" />
-    <allow-intent href="debug1.phonegap.com" />
+    <allow-intent href="*.phonegap.com" />
     <allow-intent href="market:*"/>
   </platform>
 </widget>
