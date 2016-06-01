@@ -1,9 +1,12 @@
-var push = PushNotification.init({ "android": {"senderID": "866223284827"},
+document.addEventListener("deviceready",onDeviceReady,false);
+
+function onDeviceReady(){
+  var push = PushNotification.init({ "android": {"senderID": "866223284827"},
          "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
     push.on('registration', function(data) {
         // data.registrationId
-        alert("registered: "+data.registrationId);
+        $("#test-output").html("registered: "+data.registrationId);
     });
 
     push.on('notification', function(data) {
@@ -18,3 +21,4 @@ var push = PushNotification.init({ "android": {"senderID": "866223284827"},
     push.on('error', function(e) {
         // e.message
     });
+}
