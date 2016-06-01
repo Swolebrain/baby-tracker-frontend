@@ -16,6 +16,7 @@ function onDeviceReady(){
         // data.sound,
         // data.image,
         // data.additionalData
+        $("#test-output").html(data.message);
     });
 
     push.on('error', function(e) {
