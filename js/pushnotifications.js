@@ -16,7 +16,11 @@ function onDeviceReady(){
         // data.sound,
         // data.image,
         // data.additionalData
-        $("#test-output").html(data.message);
+        //$("#test-output").html(data.message);
+        navigator.notification.alert(
+          data.message, null,
+          data.title, 'Ok'
+        );
     });
 
     push.on('error', function(e) {
