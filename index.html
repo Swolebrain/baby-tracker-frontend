@@ -148,7 +148,13 @@
     <script type="text/javascript" src='js/jquery.js'></script>
     <script type="text/javascript" src="js/firebase.js"></script>
     <script type="text/javascript">
-      var ref = new Firebase("https://baby-tracker-1.firebaseio.com");
+      var config = {
+        apiKey: "AIzaSyDzL1sVN0H8rTMksRi89j5yBOgMN7BFvV8",
+        authDomain: "baby-tracker-1.firebaseapp.com",
+        databaseURL: "https://baby-tracker-1.firebaseio.com",
+        storageBucket: "firebase-baby-tracker-1.appspot.com",
+      };
+      var ref = firebase.initializeApp(config).database();
       var currentUser;
       var authData = ref.getAuth();
       if (authData) {
