@@ -4,22 +4,20 @@ $('input[type="submit"]').off("click").on("click", function(){
     //user clicked on log in
     self.val("logging in...");
     var emailadd= $("#logemail").val();
-    ref.authWithPassword({
-      "email": emailadd,
-      "password": $("#logpassword").val()
-    }, function(error, authData) {
-      if (error) {
+    ref.auth().signInWithEmailAndPassword(emailadd, $("#logpassword").val()).then(function(user){
+      self.val("Authenticated successfully!");
+      currentUser = user.uid;
+      setTimeout(function(){
+        $(".login").fadeOut();
+        $("#main-ui").fadeIn();
+        fitToHeight();
+      }, 350);
+    }).catch(function(error) {
+      if (error){
         alert("Login Failed for "+emailadd+"-"+ error);
-      } else {
-        self.val("Authenticated successfully!");
-        //console.log(authData);
-        currentUser = ref.child("users").child(authData.uid);
-        setTimeout(function(){
-          $(".login").fadeOut();
-          $("#main-ui").fadeIn();
-          fitToHeight();
-        }, 350);
+        console.log(error);
       }
+
     });
   }
   else{
@@ -46,8 +44,8 @@ $('input[type="submit"]').off("click").on("click", function(){
         }, 350);
       }
     });
-    
-      
+
+
   }
 });
 /*$('input[type="submit"]').mouseup(function(){
@@ -78,6 +76,3 @@ $(document).mouseup(function (e)
       $('#loginform, #registerform').removeClass('green');
     }
 });
-
-
-
