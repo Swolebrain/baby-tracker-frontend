@@ -1,13 +1,13 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com.swolebrain.lactationtracker" version="1.0.7">
+        id="com.swolebrain.lactationtracker" version="1.0.8">
   <name>Newborn Breastfeeding Tracker</name>
   <description>Application to keep track of your baby's breast feeding.</description>
   <author href="http://www.swolebrain.com" email="thecodingteacher@gmail.com">Swolebrain</author>
   <content src="index.html"/>
   <preference name="android-build-tool" value="gradle" />
   <gap:config-file platform="android" parent="/manifest">
-     <application android:debuggable="true" />
+     <application android:debuggable="false" />
    </gap:config-file>
   <!--<preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="14"/>
