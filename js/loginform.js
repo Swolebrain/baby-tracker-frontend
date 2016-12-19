@@ -4,7 +4,7 @@ $('input[type="submit"]').off("click").on("click", function(){
     //user clicked on log in
     self.val("logging in...");
     var emailadd= $("#logemail").val();
-    ref.auth().signInWithEmailAndPassword(emailadd, $("#logpassword").val()).then(function(user){
+    firebase.auth().signInWithEmailAndPassword(emailadd, $("#logpassword").val()).then(function(user){
       self.val("Authenticated successfully!");
       currentUser = user.uid;
       setTimeout(function(){
@@ -28,21 +28,22 @@ $('input[type="submit"]').off("click").on("click", function(){
       return;
     }
     self.val("submitting registration...");
-    ref.createUser({
-      email    : $("#regemail").val(),
-      password : $pw.val()
-    }, function(error, userData) {
-      if (error) {
-        alert("Error creating user:", error);
-      } else {
-        self.val("Successfully created user!");
-        currentUser = ref.child("users").child(userData.uid);
-        setTimeout(function(){
-          $(".register").fadeOut();
-          $("#main-ui").show();
-          fitToHeight();
-        }, 350);
-      }
+    firebase.auth().createUserWithEmailAndPassword(
+      $("#regemail").val(),
+      $pw.val()
+    ).then(function(res){
+      console.log(res);
+      self.val("Successfully created user!");
+      currentUser = firebase.database().ref('users/'+res.uid);
+      setTimeout(function(){
+        $(".register").fadeOut();
+        $("#main-ui").show();
+        fitToHeight();
+      }, 350);
+    })
+    .catch(function(error) {
+      alert("Error creating user:", error);
+
     });
 
 

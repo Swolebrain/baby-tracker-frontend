@@ -156,15 +156,17 @@
         apiKey: "AIzaSyDzL1sVN0H8rTMksRi89j5yBOgMN7BFvV8",
         authDomain: "baby-tracker-1.firebaseapp.com",
         databaseURL: "https://baby-tracker-1.firebaseio.com",
-        storageBucket: "firebase-baby-tracker-1.appspot.com"
+        storageBucket: "firebase-baby-tracker-1.appspot.com",
+        messagingSenderId: "578793204756"
       };
-      var ref = firebase.initializeApp(config);
+      firebase.initializeApp(config);
+      var ref = firebase.database().ref();
 
       var currentUser;
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           console.log("User " + user.uid + " is logged in with " + user.provider);
-          currentUser = ref.database().child("users").child(user.uid);
+          currentUser = ref.child("users").child(user.uid);
           $("#wrap").hide();
         } else {
           $("#wrap").show();
@@ -172,16 +174,6 @@
         }
       });
 
-      /*
-      if (authData) {
-        console.log("User " + authData.uid + " is logged in with " + authData.provider);
-        currentUser = ref.database().child("users").child(authData.uid);
-        $("#wrap").hide();
-      } else {
-        console.log("User is not logged in");
-        $("#wrap").show();
-        $("#main-ui").fadeOut();
-      }*/
       function fitToHeight(){
         $("#events").find("div").each(function(i, e){
           var w = $(e).width();
